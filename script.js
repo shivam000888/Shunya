@@ -1,5 +1,8 @@
+let admin=false
 
-let admin = false
+function openLogin(){
+document.getElementById("loginPopup").classList.remove("hidden")
+}
 
 function login(){
 
@@ -8,45 +11,10 @@ let pass=document.getElementById("password").value
 
 if(user==="admin" && pass==="shivam"){
 admin=true
-afterLogin()
-return
-}
-
-let users=JSON.parse(localStorage.getItem("users"))||[]
-
-let found=users.find(u=>u.user===user && u.pass===pass)
-
-if(found){
-afterLogin()
-}else{
-alert("Wrong login")
-}
-
-}
-
-function register(){
-
-let user=document.getElementById("ruser").value
-let pass=document.getElementById("rpass").value
-let email=document.getElementById("remail").value
-let phone=document.getElementById("rphone").value
-
-let users=JSON.parse(localStorage.getItem("users"))||[]
-
-users.push({user,pass,email,phone})
-
-localStorage.setItem("users",JSON.stringify(users))
-
-alert("Registered")
-}
-
-function afterLogin(){
-
 document.getElementById("loginBtn").style.display="none"
 document.getElementById("menu").classList.remove("hidden")
-
-if(admin){
-document.getElementById("addBtn").classList.remove("hidden")
+document.getElementById("uploadBtn").classList.remove("hidden")
+document.getElementById("loginPopup").classList.add("hidden")
 }
 
 }
@@ -56,13 +24,13 @@ location.reload()
 }
 
 function openUpload(){
-document.getElementById("uploadBox").classList.remove("hidden")
+document.getElementById("uploadPopup").classList.remove("hidden")
 }
 
 function upload(){
 
 let title=document.getElementById("title").value
-let file=document.getElementById("file").files[0]
+let file=document.getElementById("image").files[0]
 
 let reader=new FileReader()
 
@@ -70,7 +38,10 @@ reader.onload=function(){
 
 let mangas=JSON.parse(localStorage.getItem("mangas"))||[]
 
-mangas.push({title,data:reader.result})
+mangas.push({
+title:title,
+img:reader.result
+})
 
 localStorage.setItem("mangas",JSON.stringify(mangas))
 
@@ -85,19 +56,19 @@ reader.readAsDataURL(file)
 function loadGallery(){
 
 let gallery=document.getElementById("gallery")
-
 gallery.innerHTML=""
 
 let mangas=JSON.parse(localStorage.getItem("mangas"))||[]
 
 mangas.forEach((m,i)=>{
 
-let div=document.createElement("div")
-div.className="card"
+let card=document.createElement("div")
+card.className="card"
 
-div.innerHTML=`<h3>${m.title}</h3>`
-
-div.onclick=()=>openReader(m.data)
+card.innerHTML=`
+<img src="${m.img}">
+<h3>${m.title}</h3>
+`
 
 if(admin){
 
@@ -114,48 +85,40 @@ localStorage.setItem("mangas",JSON.stringify(mangas))
 loadGallery()
 }
 
-div.appendChild(del)
+card.appendChild(del)
 
 }
 
-gallery.appendChild(div)
+gallery.appendChild(card)
 
 })
 
 }
 
-function openReader(data){
-window.open(data)
+function searchManga(){
+
+let q=document.getElementById("search").value.toLowerCase()
+
+let cards=document.querySelectorAll(".card")
+
+cards.forEach(card=>{
+
+if(card.innerText.toLowerCase().includes(q)){
+card.style.display="block"
+}else{
+card.style.display="none"
+}
+
+})
+
 }
 
 function toggleMenu(){
 document.getElementById("menuBox").classList.toggle("hidden")
 }
 
-function scrollToSupport(){
+function scrollSupport(){
 document.getElementById("support").scrollIntoView()
-}
-
-document.getElementById("loginBtn").onclick=()=>{
-document.getElementById("loginBox").classList.remove("hidden")
-}
-
-document.getElementById("search").oninput=function(){
-
-let q=this.value.toLowerCase()
-
-let cards=document.querySelectorAll(".card")
-
-cards.forEach(c=>{
-
-if(c.innerText.toLowerCase().includes(q)){
-c.style.display="block"
-}else{
-c.style.display="none"
-}
-
-})
-
 }
 
 loadGallery()
