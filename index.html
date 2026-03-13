@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Shunya Manga</title>
+<title>SHUNYA</title>
 <link rel="stylesheet" href="style.css">
 </head>
 
@@ -9,60 +9,54 @@
 
 <header>
 
-<h1>SHUNYA</h1>
+<div class="logo">SHUNYA</div>
 
-<input type="text" id="search" placeholder="Search Manga">
+<div class="searchBox">
+<input type="text" id="search" placeholder="Search manga...">
+<button onclick="searchManga()">🔍</button>
+</div>
 
-<button id="loginBtn">Login</button>
+<button id="loginBtn" onclick="openLogin()">Login</button>
 
 <div id="menu" class="hidden">
-<span onclick="toggleMenu()">三</span>
+<span onclick="toggleMenu()">☰</span>
+
 <div id="menuBox" class="hidden">
 <button onclick="logout()">Logout</button>
 </div>
 </div>
 
-<button onclick="scrollToSupport()">Support</button>
+<button onclick="scrollSupport()">Support</button>
 
 </header>
 
+<h2 class="title">Fresh Manga</h2>
+
 <div id="gallery"></div>
 
-<button id="addBtn" class="hidden" onclick="openUpload()">＋</button>
+<button id="uploadBtn" class="hidden" onclick="openUpload()">＋</button>
 
-<!-- Login Window -->
+<!-- LOGIN -->
 
-<div id="loginBox" class="popup hidden">
+<div id="loginPopup" class="popup hidden">
 
 <h2>Login</h2>
 
-<input id="username" placeholder="Username">
+<input id="username" placeholder="username">
 
-<input id="password" type="password" placeholder="Password">
+<input id="password" type="password" placeholder="password">
 
 <button onclick="login()">Login</button>
 
-<h3>Register</h3>
-
-<input id="ruser" placeholder="Username">
-
-<input id="rpass" placeholder="Password">
-
-<input id="remail" placeholder="Email">
-
-<input id="rphone" placeholder="Phone">
-
-<button onclick="register()">Register</button>
-
 </div>
 
-<!-- Upload Window -->
+<!-- UPLOAD -->
 
-<div id="uploadBox" class="popup hidden">
+<div id="uploadPopup" class="popup hidden">
 
-<input id="title" placeholder="Title">
+<input id="title" placeholder="Manga title">
 
-<input type="file" id="file">
+<input type="file" id="image">
 
 <button onclick="upload()">Upload</button>
 
@@ -71,11 +65,9 @@
 <footer id="support">
 
 <h3>Support</h3>
-
 <p>shivam0008888</p>
 
 <h3>About Me</h3>
-
 <p>I love to write Manga</p>
 
 </footer>
