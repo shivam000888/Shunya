@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Shunya Manga</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+
+<h1>SHUNYA</h1>
+
+<input type="text" id="search" placeholder="Search Manga">
+
+<button id="loginBtn">Login</button>
+
+<div id="menu" class="hidden">
+<span onclick="toggleMenu()">三</span>
+<div id="menuBox" class="hidden">
+<button onclick="logout()">Logout</button>
+</div>
+</div>
+
+<button onclick="scrollToSupport()">Support</button>
+
+</header>
+
+<div id="gallery"></div>
+
+<button id="addBtn" class="hidden" onclick="openUpload()">＋</button>
+
+<!-- Login Window -->
+
+<div id="loginBox" class="popup hidden">
+
+<h2>Login</h2>
+
+<input id="username" placeholder="Username">
+
+<input id="password" type="password" placeholder="Password">
+
+<button onclick="login()">Login</button>
+
+<h3>Register</h3>
+
+<input id="ruser" placeholder="Username">
+
+<input id="rpass" placeholder="Password">
+
+<input id="remail" placeholder="Email">
+
+<input id="rphone" placeholder="Phone">
+
+<button onclick="register()">Register</button>
+
+</div>
+
+<!-- Upload Window -->
+
+<div id="uploadBox" class="popup hidden">
+
+<input id="title" placeholder="Title">
+
+<input type="file" id="file">
+
+<button onclick="upload()">Upload</button>
+
+</div>
+
+<footer id="support">
+
+<h3>Support</h3>
+
+<p>shivam0008888</p>
+
+<h3>About Me</h3>
+
+<p>I love to write Manga</p>
+
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>
